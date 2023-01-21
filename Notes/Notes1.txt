@@ -1,0 +1,839 @@
+
+algorithm search(ref arr<array>, val sv<Integer>, val size<Integer>)
+
+Algorithm to search value from specified array and return index location of found element
+   Pre: arr contains data array to ve searched sv value to be searched from array size informs number of array elements
+  Post: None
+Return: -1 if not located otherwise index location and found element
+
+1.i=1
+2.loop(i<size)
+    1.if sv equals arr[i] then
+        1.stop
+    2. i=i+1
+3.end loop
+4.if(i=size)
+    1.return -1
+  else
+    1.return i
+5.stop
+
+Statement number
+
+The Statement are numbered using abbrevatied decimal notation. The expanded number of statement that stops the loop is 2.1.1
+This technique gives us the capability to indentify an individual statement while providing statements that are easily read
+
+Variables
+
+It is not necessary to define every variable used in the algorithm.To assure that meaning is understood we use intelligent data names, that is, names that describe 
+meaning of data.
+
+Statement Construct
+
+The algorithm is written with only three programming statements, selection,sequence and loop
+
+Sequence: It is a series of statements that do not alter the execution part within the algorithm. While it is obvious that staements add,assign and call to other 
+algorithm is also a sequence.
+
+Selection: It evalutes one or more alternatives. If the alternatives are true one path is taken if false anotherpath is taken. It has following part
+            1. if(condition)
+                1.true part
+            2.else
+                1.false part
+
+loop: it iterates a part       . The loop that we use in pseudocode closely resembles the for loop. it is a pre test loop, that is condition is evaluted before 
+body of loop is exceuted. If condition is true body is executed else it is terminated.
+
+Abstract Data Types: Data type consists of two part, a set of data and operation that can be performed on data. Thus we see that, integer type consits of value, whole
+number on some defined range and operations like add,subtract,divide,multiply. 
+
+Atomic data : This data is a data that we choose to consider as a single, non decomposable data ex: int(13344) may be considered as a single integer value. This we can
+decompose into digits but decomposed digits will not have same characterisctics like the original integer. They will be four single digit integers in the range 0-9.
+
+An atominc data type is a set of atomic data having identical properties. This properties distinguish one atomic data type from another. They are defined by a set of 
+values and a set of operations that act on the values.
+
+The oposite of atomic data is composit data. They can be broken down into sub fields that have meaning for example:- Telephone number, pincode number.
+
+DATA STRUCTURE
+
+It is an aggregation of atomic and composite data types into a set with defined relationships. In this relation structure means a set of rules which hold a data together
+In other words if we take a combination of data types and fit them into a struture such that we can define its relating rules, we have made a data structure. The data
+structure can be nested.
+
+An Abbtract data type is a data declaration packaged together with the operations that are meaningful on the data types. In other words we encapsulate the data and the 
+operation on the data and we hide them from user.
+
+algorithm efficiency
+
+There is seldom a single algorithm for a problem. When comparing two different algorithms that solve the same problem, often one will be an order of magnitude which will
+be more efficent that the other one. In this case it only makes sense that we would be able to recognize and choose more efficient algorithm.
+The thing which matters the most is how many times a iteration is repeated.
+
+The systematic study of the fundamental techniques used to design and analysis efficient algorithm is called as algorithms. 
+
+If a function is linear, that is, if it contains no loops, then its efficency is a function of the number of instructions it contains. In this case its efficiency is 
+dependent on the speed of the computer and is generally not a factor in the overall efficency of the program. 
+On the other hand function that loop will vary widely in the efficency. The study of algorithm efficency is therefore largely devoted to study of loop.
+The algorithm efficiency as a function of the number of elements to be processed. 
+
+The general format is f(n)=efficency
+
+A.Linear Loop
+
+This is a simple loop. Now we want to know how many body of loop is repeated in following code.
+
+1. i=1
+2. loop(i<=1000)
+    1.application code
+    2.i=i+1
+3.end loop
+
+Assuming i is an integer, the answer is 1000. But the answer is not always straightforward as it is in the above example.
+For example, Consider the following loop, In this loop the code is repeated 500 times.
+
+1. i=1
+2. loop(i<=1000)
+    1.application code
+    2.i=i+2
+3.end loop
+
+In both cases number of iteration is directly proportional to a factor. The higher the factor, higher the number of loops. If we were to plot either of this loop we 
+would get an straight line. for this reaseon the loops are called as linear loops. The efficiency is proportional to the number of iterations it is f(n)=n
+
+B.Logarithmic loops
+
+Consider the loop in which controlling variable is multiplied or divided in each loop.
+How many times the body of the loop will be repeated in the following program?
+
+Multiple Loop                              Divide Loop
+
+1. i=1                                     1. i=1000 
+2. loop(i<=1000)                           2. loop(i>0)
+    1. application code                        1. application code   
+    2. i=i*2                                   2. i=i/2
+3. end loop                                3. end loop
+
+The number of iteration is 10 in both cases. The reason is that in each iteration value of i doubles for multiply loop or is cut in half for divide loop.
+This means that the number of iterations is a function of multipler or divisor. In this case it is 2, that is, the loop continous while condition shown below is true.
+For multipler loop 2^n <1000 and divide loop is n/2 >0. By generalizing the analysis we can say that iteration in loop that multiple or divide are determined by the 
+following formula 
+
+                                        f(n)=(log(2)(n))
+
+C.Nested Loop
+
+Loops that contains loops are referred as Nested loop. In this case we must determine how many iterations each loop completes. The total is then product of number of 
+iterations from the inner loop and number of iterations from the outer loop. 
+
+There are three nested loops :- Linear Logarithmic, Dependent quadratic loop, Quadratic loop
+
+C1. Linear Logarithmic 
+
+1. i=1
+2. loop(i<=10)
+    1.j=1
+    2.loop(j<=10)
+        1.application code
+        2. j=j*2
+    3. end loop
+    4. i=i+1
+3.end loop
+
+f(n) = n * (log(2)(n))
+
+The inner loop in the above code is a loop that multiples number of iteration in inner loop. Therefore log(2)(n). However the inner loop is controlled by outer loop, 
+the above formula must be multipled by number of times outer loop executes. This gives 10 * log(2)(10). 
+
+C2. Dependent Quadratic Loop
+
+1. i=1
+2. loop(i<=10)
+    1.j=1
+    2.loop(j<=i)
+        1.application code
+        2. j=j+1
+    3. end loop
+    4. i=i+1
+3.end loop
+
+The outer loop is the linear loop However the inner loop is Dependent on the outer loop for one of its factor. It is executed only once for first iteration, twice for 
+second iteration, third for third iteration and so on. So the total number of iterations in the body of the inner loop is 1+2+3+4+5+6+7+8+9+10. If we compute the average
+of this loop it is 5.5 , that is, 55/10. That is number of iteration+1/2. This calculation is generalized to (n+1)/2, multipling the inner loop by number of items the 
+outer loop is executed gives us the following formula for Dependent quadratic loop
+
+f(n) = n((n+1)/2)
+
+C3. Quadratic Loop
+
+1. i=1
+2. loop(i<=10)
+    1.j=1
+    2.loop(j<=10)
+        1.application code
+        2. j=j+1
+    3. end loop
+    4. i=i+1
+3.end loop
+
+In the above example each loop executed same number of times the outer loop is executed 10 times and for each of its iteration the inner loop is also executed 10 times
+the answer is therefore 100 which is 10*10 this is the formula for quadratic loop
+
+f(n)=n*n
+
+Big-O-Notations
+
+With the speed of the computers today we are not concern with an exact measurement if an algorithm efficiency as much as we are with the general magnoitude. If the 
+analysis of two algorithm show that one executes 15 iterations while other executes 25 iterations, both are so fast that we cannot see the difference. On the other
+hand if one iterates 15 times and the other 1500 times, we should be concerned.
+
+The number of statements executed in function for n elements of data is a function of number of elements expressed as f(n) while equation derived for the function may be
+complex there is usually a dominanat factor in the equation that determines the order of magnitude of the result. Therefore we do not need tot determine the complete 
+measure of efficiency, only the factor that determines the magnitude. This factor is called as big-o-notations as in on-the-order of expressed as O(n), that is, on the
+order of n.
+
+This simplification of efficiency is known as Big-O-Notations analysis. If an algorithm is quadratic then its efficiency O(n^2). That is on the order of n square.
+The Big-O-Notations can be derived from function of n elements using following steps.
+
+1. In each term set the coefficient of the term to 1.
+2. Keep the largest term in the function and discard the other.The terms are ranked from lowest to highest as shown below.
+
+    1                   log(n)
+    2                   n
+    3                   n*log(n)
+    4                   n^2
+    5                   n^3
+    6                   n^k
+    7                   2^n
+    8                   n!
+
+Example 1:- To compute Big-O-Notations
+
+f(n) = n((n+1)/2)
+f(n) = (n^2 + n)/2
+f(n) = (n^2)/2 + n/2
+set the coefficient to 1
+f(n) = n^2 + n
+Taking the largest term
+f(n) = O(n^2)
+
+Linear List 
+
+It is a list in which each element has unique successor. Here before, we have studied linear list structure called array. While arrays are easy to create and use, they 
+are inefficent whenever sequence data need to be inserted or deleted. 
+
+Linear list can be divided into two categrey:-
+General List
+Restricted list
+
+In a General list data can be inserted and deleted anywhere and there are no restriction on 
+the operation that can be used to process the list. General structure can be further described by there data as either random or ordered list. In a random list there is 
+no order of data. In an ordered list, the data are arranged according to key. A key is one or more fields within a structure that are used to identify the data or 
+otherwise control its use. In the simple array the data are also the keys. In an array of record structure the key is a field such as roll number for student, employee
+number that identifies employee data.
+
+In a restricted list the data can only be added or deleted at the end of the structures and processing is restricted to operation on the data at the ends of list. We 
+descibed to restricted list, first in first out(FIFO) and last in first out(LIFO). The FIFO is generally called a queue and LIFO is called stack.
+
+There are four operations associated with linear list.
+1. Insertion
+2. Deletion
+3. Retelevel         reading a particular element from list
+4. Traversel         visiting the elements only once from list
+
+Linked list
+
+A link list is a ordered collection of data in which each element contain location of next element that is it contains two part link and data.
+
+typedef struct node
+{
+    int data;
+    struct node *next;
+}NODE;
+
+NODE *st = NULL;
+
+1. To create a node 
+
+st(NULL)
+
+2. Add new node at end
+
+st(100)   :   data,next(10,N)
+
+3. Add new NODE at end
+st(100)   :  (10,200)   :   (20,N)
+
+4. Add new node at end 30
+
+st(100)   :  (10,200)  :  (20,300)  :   (30,N)
+
+5. Add new node at begin 40
+
+st(400)   :  (40,100)  :  (10,200)  :  (20,300)  :  (30,N)
+
+The above figure shows linked list st containing four elements. The link in each element execpt the last points to its successor. The next in last element contains a NULL
+pointer, indicating the end of the list. We define an empty linked list to be a single pointer containing a null pointer.
+
+Nodes
+
+The elements in a linked list are traditionally called nodes. A node in linked list is a structure that has atleast two fields. One contains data and the other a pointer
+to the address of the next node in the sequence. 
+The nodes in a linked list are called self referential structures. In a self referential each instance of a structure contains a pointer to another instance of same
+structural type.
+One of the attributes of a linked list is that there is not a physical relation between node, that is, they are not stored continously without a physical relations between
+the nodes we need a pointer to distinguish between th list. To identify the first logical node in the list and location of next successor. The pointer to the beginning of
+the list is known as head pointer because it points to a node at the head of the list.
+
+Stacks
+
+A stack is a linear list in which all additions and deletion are restricted to one end called the TOP. If we were to insert data series into a stack and remove them, there
+order will be reversed, this reversing attribute has lead to stacks to be known as Last-in-First-out(LIFO). There are many uses of stacks in our daily life. Stacks of coins,
+dishes, reversing a list, decimal to binary, recursion, conversion of infix expression into a postfix expression or postfix to prefix and evaluation of postfix expression.
+and backtracking.
+
+Basic stack operations
+
+There are three basic stack operation: -      
+
+1. push: - It adds a item at top of the stack. After the push the new elements becomes the top. There is only one problem with this simple operation, we must ensure that, 
+there is room for new item. If there is insufficient room then the stack is in overflow state and the element cannot be added. 
+2. pop: - When we pop a stack we remove the item at the top of the stack and return it to the user because the top item has been removed, the next item in the stack becomes
+the top. When the last stack is deleted, the stack must be set to empty state. If pop is called when the stack is empty then it is underflow state.
+3. stack top: - The stack top copies the item at the top of the stack, that is, it returns the data at top element to the user but does not delete it, that is, reading the 
+stack top element. The stack top can also result in underflow if the stack is empty.
+
+The stack can be implemented using arrays and linked list.
+
+Infix,PostFix and Prefix evaluation and conversion
+
+Infix expression is the one in which operation is between two operand. Ex:- (a+b)
+Prefix expression is the one in which operand is before two operand. Ex: - (+ab)
+Postfix expression is the one in which operand is after two operand. Ex: - (ab+)
+
+Example for conversion of Infix operation to its postfix expression
+
+Infix                 Postfix
+
+a+b                   ab+
+
+a+b-c                 ab+c-
+
+(a+b)*(c-d)           ab+cd-*
+
+a$b*c-d+e/f/(g+h)     ab$c*d-ef/gh+/+
+
+((a+b)*c-(d-e))$(f+g) ab+c*de--fg+$
+
+a-b/(c*d$e)           abcde$*/-
+
+Example for conversion of Infix operation to its Prefix expression
+
+Infix                 Prefix
+
+a+b                   +ab
+
+a+b-c                 -+abc
+
+(a+b)*(c-d)           *+ab-cd
+
+a$b*c-d+e/f/(g+h)     +-*$abcd//ef+gh
+
+((a+b)*c-(d-e))$(f+g) $-*+abc-de+fg
+
+a-b/(c*d$e)           -a/b*c$de
+
+if we find an operator or Parenthesis having a higher precendence over the stack top element, provided it is not a Parenthesis. When it is a right parenthesis pop the 
+stack top element and discard it. Initially stack will be empty and we have to push any left parenthesis encountered. If we find operator or parenthesis with lower precendence
+over the stack top element then pop the stack top element and insert it into postfix stream. We must ensure that the stack is not empty before we pop elements from it 
+and continue scanning. When the end of the string is reached pop all the elements from stack and insedrt them into postfix stream. Finally print the postfix stream both 
+operator and operand.
+
+During scanning if we encounter an operand push it onto the stack
+Pop only the top to elements and allow the operand to act push this
+intermediate result in stack and continue scanning
+When we reach the end of the string there should only be one element on
+the stack. Pop this element to get postfix expression
+
+1. Input postfix expression 
+    AB+CD-*
+2. Declaration of array
+    static int val[26];
+3. scan the expression from left to right and check is operand? if yes ask value of store to array
+    
+    ex. ch       index              
+        A         0                  ask and store value at val[0] location
+        B         1                  ask and store value at val[1] location                
+        C         2                  ask and store value at val[2] location
+        D         3                  ask and store value at val[3] location
+4. Create stack variable and initialize it
+5. Introduce loop and scan the postfix expression 
+    a) if operand then
+        i)  collect value from arr array
+        ii) push value onto stack and continue;
+    b) if operator, then pop top 2 elements, allow operator to operate over 2 operands and push result onto stack and continue;
+6. Pop the top element, which is the result of postfix expression 
+
+//
+Queue
+
+It is a linear list in which data can only be inserted at one end called the rear and deleted from the other end called the front. This restrictions ensure that data are
+processed through the queue in the order in which they are recieved. Queue is a first in first out data structure.
+A Queue is same as a line. ex: - waiting for line, list of calls put on hold to be answered by an telephone operator, List of waiting jobs processed by computer.
+
+//
+Queue operation
+
+1. inqueue: - The queue insert is known as inqueue. After the data has been inserted in the queue, the new element becomes the rear. THe only problem with inqueue is that
+running out of room for data. (it is called as overflow state). If there is not enough room for the queue the queue is in an overflow state. 
+
+2. dequeue: - The queue delete operator is known as dequeue. Data at the front of the queue are returned to the user and removed from the queue. If there are no data in the 
+queue when a dequeue is attempted then it is in underflow state.
+
+3. queuefornt : - The data at the front of the queue can be examined with queuefront. It returns the data at the front of the queue without changing the contains of the 
+queue. If there are no data in the queue, then queue is an underflow state.
+
+4. queuerear : - This is a parallel operation to the queue front which examines the data at the rear of the queue. This operation is known as queue rear. If there is no 
+data in the queue then it is in underflow state. 
+
+Queue can be implemented by array and linkedlist. 
+
+Array implementation of queue
+
+#define M 5
+
+typedef struct queue{
+    int arr[M];
+    int fr;    // fr stands for front end
+    int rr;    // rr stands for rear end
+}Q;
+
+void init(Q *t){
+    t->fr=0;
+    t->rr=-1;
+}
+
+//
+Sorting techniques
+
+Sorting is a process through which data are arranged according to there values. Sorts are generally classified as either internal or external.
+
+Internal sort is a sort in which all of the data are held in the primary memory during the sorting process. An external sort uses primary member for the data currently
+being sorted and secondary storage for any other data that will not fit in primary member. Data maybe sorted either in ascending or descending sequence. The sort order 
+identifies the sequence of the sorted data in ascending or descending. If the order of sort is not specified then it is assumed to be in ascending order. 
+
+Sort efficency is the measure of the releative efficency of the sort. It is mainly the  
+and moves require to order an unordered list.
+
+1. Selection Sort
+
+In this sorting technique we simply select the smallest item and place it in the sorted list. This steps are repeated until all of the data have been sorted. In this
+technique the list at any movement is divided into two parts sorted and unsorted and separated by an imaginary wall.
+
+49 26  6 89 62
+6  26 49 89 62
+6  26 49 89 62
+6  26 49 62 89
+
+The sorting efficiency of this method is n square.
+
+2. Bubble Sort
+
+image
+
+3. Insertion Sort
+
+When the data is already filled in the array then second method of insertion sort is used. 
+Let us assume that array size is 5,
+
+First, we group first one element.
+Second, we group first two element and compare the two numbers if the number is less then we swap else we leave it like that only.
+Third, We keep on doing these until whole array is sorted.
+
+4. Radix Sort
+
+This sorting technique uses queue.
+
+//
+Searching 
+
+One of the most common and time consumping operations in CS is searching. It is the process used to find the location of the target among list of objects. There are 
+several searching algorithms.
+
+1. Linear Search
+2. Binary Search
+
+The algorithm used to search a list depends to a large extend on the structure of the list. Here we study searchs that will work on arrays. There are two basic searches
+for arrays, the sequential and binary. The sequential can be used to locate item in any array. The binary search on other hand requires order list. 
+
+The sequential search is used whenever the list is not ordered. Generally we will use this technique only for small list or list that are not searched often. In this 
+technique we start searching targets at the beginning of the list and continue until we find the target or we are sure that it is not in the list. This gives two
+possibility either we find it or reach the end of the list. 
+
+//
+Varitions of Sequential Search
+
+There are three useful variations on sequential search alogorithm: - 
+
+1. sentinel search
+2. Probability search
+3. Ordered list Search
+
+//
+Sentinel search
+
+In search algorithm that is studied previously note that loop tests two elements, end of the list and target not found. When a inner loop of a program tests for two or 
+more elements an attempt must be made to reduce it to just one condition.
+
+If we note that target will be found in the list, we can elimate the test for end of the list. There is only one way to ensure that target is actually in the list, put the 
+target there only. This done by adding an extra element, called sentinel element at the end of the array and placing the target in the sentinel. We can then optimize the 
+loop and determine after the loop whether or not we found the actual data or sentinel element.
+
+//
+Probability Search
+
+In this search, array is sorted with most probable search element in the beginning of the array and least probable at the end of the array. It is used when small number 
+of elements are targets for most of the searchs. To ensure that Probability ordering is correct over time in each search we exchange the located element with the element
+before it.
+
+//
+Ordered List Search 
+
+It is generally recommended that binary search then searching list on the target. If the list is small it can be more efficencent to use a sequential search. When searching
+a ordered list sequential it is not necessary to search to the end of the list to determine that target is not in the list. We can stop when the traget becomes less than 
+or equal to the current element we are testing. In addition we encorporate the sentinel concept. 
+
+//
+Hashing
+
+The process of finding empty place is called as collison resolution.
+Clusting is the phenomenon in which elements are accumulated around home address.
+
+4. Digit extraction
+
+In digit extraction method, selected digits are extracted from the key and used as a address. for example, we have a 6 digit employee number and want to hatch a 3 digit 
+address[000 to 999]. We could select first, fourth and third digits and use them as address.
+
+Mid Square method
+
+In this method the key is squared and the adress selected from the middle of the square number. The most obvious limitation of this object is the size of the key. Given 
+a key of six digits the product will be 12 digit which is beyond the maximum size of many computers. To overcome this problem, we select a protion of the key such as a 
+middle 3 digits and then use them rather whole key. 
+
+Holding method
+
+There are two holding method that are used 1. hold shift: - In this method the key value is divided into parts whose size matches the size of the required address. Then 
+the left and right parts are shifted and added with the middle part. If the resulting sum is greater than 999 discard the leading digit. For example, key equal to
+123456789. 
+
+key = 123456789
+123+456+789=1368 now discard the first digit and remaining part is hash value.
+
+second method is fold boundary. In this method the left and right digits are folded between a fixed boundary between them in the centre. This results in two outside values
+being reversed. Then all this three digits are added. If sum is above 999, then we discard the leading digit. 
+
+key = 321456987
+321+456+987= 1764 discard 1 and 764 is hash value. 
+
+Rotation method
+
+In this hashing method the right most digit of the key is rotated to the left to determine an address. However, this method is usually used in combination with other methods
+
+Random generation
+
+In this hashing method the key is used as a seed to generate a pseudo random number. The result is then scaled to obtain the address. 
+
+Resolution/Collision method
+
+With the exception of direct and subtract methods, none of the methods of hashing are 1 to 1 mapping. This means that when we hash a new key to address we may create a 
+collision. There are several methods for handling collision and each of them are independent of the hashing algorithm. That is each hashing method can be used with each
+of the collision methods. Before we discuss collision resolution method, some hashing algorithm tend to causes data to group between the list. This tendency of data to 
+build unevently across a hash list is known as Clusting. Clusting is concerned because it is usually created by collision. If the list conatins high degree of clustering 
+then the number of probes to locate an element grows and the processing efficency of the list is reduced. The two disting types of clustering are observed. Primary and 
+secondary clustering.
+
+Secondary clustering
+
+This happens when data becomes one on collision path throughout the list. It is not easy to identify. In this clustering, data are widely distributed across the whole list
+so that list appears to be well distributed. If data lie on well travelled collision path, the time to locate a requested element of data can become large. To locate the 
+first element inserted in the list, text only one probe. To locate second element text two probes therefore to locate n th element array to the list takes n probes, even 
+if data are widely distributed across the address of the list. From this discussion it must be apperent that we need to design our hashing algorithm to minimize clustering.
+It is important to note that with the exception of direct and subtraction methods we cannot eliminate clustering. 
+
+now we have to study collision resolution methods. Generally there are two different approaches to resolving collisions. Open addressing and linked list. 
+
+1. Open Addressing
+
+The open addressing resolves collision in the home area. When a collision occurs the home area address are searched for an open or unoccupied element where the new data
+can be placed. There are four different methods 
+
+a linear probe,           When collision occurs second data will be stored in the next available address. 
+b quadratic method,       in this method the increment is the collison probe number squared. 
+c pseudorandom rehashing, in this method we use random number generator to rehash the address.
+d key offset rehashing,   in this method we use offset to rehash the address. It is double rehashing method that produces different collision paths for different keys. This 
+finds new function as the address of the new address and the key. 
+
+2. Linked List resolution
+
+refer the image
+
+A major disadvantage to open addressing is that each collision resolution increase a Probability of future collisions. This disadvantage is eliminated in the second approaches
+to linked list. A linked list is an ordered collection of data in which each element contains the address of the next element. 
+Linked list resolution uses a separate area to store collisions and change all synoynms together in a linked list. It uses to storage areas called prime area and overflow 
+area. Each element in the area contains additional field link with head pointer to overflow data in the overflow area. When a collision occurs one element is stored in the 
+prime area and changed to its corresponding linked list in the overflow area. The linked list data can be stored in any order. 
+
+Bucket Hashing
+
+refer the image
+
+This is another approach to solve collision, is to use bucket. bucket accomadates multiple data occurs because bucket can hold multiple pieces of data collsion are 
+postpond until bucket is full. When bucket is full we use linear probe to insert new element. 
+
+//
+Binary Tree
+
+A tree consists of finite sets of elements called NODES and a finite set of directed lines called BRANCHES that connect the nodes. The number of branches associated with 
+nodes is the DEGREE of the node. When a branch is directed towards the nodes it is an INDEGREE branch and when a branch is directed away from the node it is an OUTDEGREE 
+banch. The sum of indegree and outdegree braches equal the degree of the nodes. 
+
+refer the image
+
+Roots: {A}
+Siblings: {B,C,D},{E,F},{G,H,I}
+Internal Nodes: {B,D}
+Leaves: {E,F,C,G,H,I}
+Depth: 3                                 it is the number of level in the tree
+
+If the tree is not empty then the first node is called the ROOT, the indegree of the root is by definition 0 with the exception of the root all of the nodes in the tree
+must have indegree of exactly one. All nodes in the tree can have 0,1 or more branches leaving them that is they may an outdegree of 0,1 or more. 
+
+A leaf is any node with an outdegree of 0 that is number of branches away from the node is 0. Nodes that are not root or leaf are known as INTERNAL NODES because they are 
+found in the middle portion of the tree. A node is a parent if it has an successor that is it has an out degree greater than 0. Conversely a node predecessor is a child. 
+A child has indegree of 1. Two or more nodes with same parents are called with siblings. An ancestor is any node in the path from the root to the node. A decendant is any 
+node in the path below the parent node that is all nodes in the paths from a given node to a leaf are decendants of the nodes. 
+
+A path is an sequence of nodes in which each node is adjacent to the next one. Eceru node in the tree can be reached by the following a unique path starting from the root.
+
+The lebel of a node is its distance from the root because the root has 0 distance from itself, this places the root is at level 0. The children of the root are at level 1.
+There are children are level 2 and so on. The height of the tree is the level of the leaf in the longest path from the roots + 1. This term is also reffered as height. 
+
+A tree may be divided into sub tree. A sub tree is any connected structure velow the root. The first node in the sub tree is known as root of the sub tree and is used to 
+name the sub tree further more the sub trees can be sub divided into sub trees. 
+
+The concept of sub tree leads us to a recursive definition of the tree. A tree is a set of nodes that is empty or jas an designated nodes called the root from which 
+hierachical decend 0 or more trees which are also tree. 
+
+BINARY TREE 
+
+A binary tree is a tree in which no node can have more than two sub trees. In other words a node can have 0,1 or 2 sub trees. This sub trees are designated as left sub 
+tree and right sub tree. 
+
+A null tree is a tree with no nodes. 
+
+Properties 
+
+1. Height of binary tree
+
+The height of the binary tree can be predicted by maths that we can store two nodes. Therefore max height is n.
+
+Hmax = N
+
+A tree with max height is rare. It occurs when the entire tree is build in one direction. The minimum height of the tree Hmin is determined by the following formula.
+Hmin = log(2)(N)+1 
+
+Given a binary tree of height H. The minimum and maximum number of nodes Nmax=2 pow(H) - 1 and Nmin = H. 
+
+2. Balance
+
+The distance of a node from the roots determines how efficiently can it be located. 
+
+Given any node its children can be accessed by following one branch path, the one that leads to a desired node. Similarly the nodes at level two can all be accessed by
+following only two branchs from the root. The shorter we can make the tree the easier it is to locate any desired node in the tree. 
+
+This leads us to a important characteristics its balance. To determine if a tree is balanced we calculate its balance factor. The balance factor of a binary tree is the 
+difference in the height between the left and right sub trees. If we define the height of the left sub tree as HL and HR. Then the balance factor of the tree is 
+B = HL - HR. A tree is balanced if its balance factor is 0 and its sub trees are also balanced. A binary tree is balanced if the height of its sub trees differs by no more 
+than 1(either -1,0,1). This definition was created by Adelson, Velsky and EM Landis.
+
+Types of Binary Tree
+
+1. Strictly Binary tree 
+
+refer image 
+
+A binary tree is said to be strictly binary if ever non leaf node has non empty left and right sub trees. 
+
+2. Completer Binary Tree
+
+refer the image
+
+If all leaves of the strictly binary tree are at level n then we call such a tree as a complete binary tree of depth n.
+
+3. Almost Binary Tree
+
+Refer the image
+
+A binary tree of depth n is said to be almost complete binary tree if each node in the tree is either at level n or n-1. For every node in the tree with left descendant 
+all the left descendants of this node are also at level n. 
+
+Inorder Traversal
+(Left-root-right)
+
+visiting the left subtree in inorder
+visiting the root
+visiting the right subtree in inorder
+B-A-C
+
+PostOrder Traversal
+(Left-Right-Root)
+
+visiting the left subtree in postorder
+visiting the right subtree in postorder 
+visiting the root
+B-C-A
+
+//
+Breath first traversal
+
+In this traversal the processing proceeds horizantal from the root to all of its children, then to its children's children and so forth until all nodes have been porocessed
+In other words, in breadth first traversal each level is completely is processed before next level is started. this uses queue data structure.
+
+refer image
+
+//
+Binary search tree 
+
+It is a binary tree with following properties: -
+
+1. All the items in left sub tree are less than the root.
+2. All the items in left sub tree are greater than or equal to the root.
+3. Each sub tree itself is a binary search tree. 
+
+If there are many attributes like student data then we must use one data as attribute. Like in student data there are many attributes so we can use roll number as a main 
+attribute. Generally, the data represented by each node is data rather than a single data element. When the binary search tree is applied to a record the sequencing 
+properties refer to the key of the record. 
+
+//
+Graph
+
+In tree structure, each node could have multiple successors but just one predecessor. In graphs each node may have multiple predecessor as well as multiple successors. 
+Graphs are usefull data structures, they can be used to solve complex rooting problems such as designing and rooting airlines among the airport they serve. Similarly, they
+can be used to root messages over a computer network from one node to another. 
+
+A Graph is an collection of nodes called vertices, and collection of line segments connecting pairs of vertices are called lines. In other words a graph consists of two 
+sets, a set of vertices and set of lines. Graphs may be either directed or undirected. A directed graph or digraph is a graph in which each line has a direction to its 
+successor. The line in an directed graph are known as arcs. In a directed graph, the flow along the arcs in between two vertices can follow only the indicated direction. 
+The undirected graph is a graph in which there is no direction on the lines known as edges. In an undirected graph the flow between the two vertices can go in either 
+direction. Two vertices in an graph are said to be adjacent vertices if there exist an edge that directly connects them. A and B are adjacent. D and F are not adjacent. 
+A path is an sequence of vertices in which a each vertex is adjacent to the next one. A cycle is an path consisting atleast three vertices that start and end with same 
+vertices. In an undirected graph it is BCE. A loop is a special case of cycle in which a single arc begins and ends with the same vertex. In a loop, the end point of the 
+edges are the same. 
+
+Two vertices are said to be connected if there is a path between them. A graph is said to be connected if, suppressing direction, there is a path from wach vertex to any
+other vertex. 
+
+A directed graph is strongly connected, if there is a path from each vertex to every other vertex. A directed graph is weakly connected when there are atleast two vertices
+that are not connected. A graph is disjointed if it is not connected.
+
+The degree of vertex is number of lines inserted in it. The out degree of an graph is the number of arcs leaving the vertex. The in degree is the number of arcs entering
+the vertex. 
+
+Graph Traversal
+
+Given a graph, there is always atleast a one application that requires that all vertices in the graph be visited that is there is atleast one application that requires
+that graph be traversed. The vertex in an graph can have multiple parents, the traversal of the graph presents some problems not found in the traversal of the linear 
+list and trees. Specifically we must assure that we process the data in each vertex only once. But there are multiple paths to a vertex it is possible that we can arrive 
+at it from one direction as we traverse the graph. The traditional solution to this problem is to include a visited flag at each vertex. Before the traversal, the graph is
+scanned and visited flag is set off. Then as we traverse the graph we set the visited flag on to indicate that the data has already been processed. There are two standard
+graph traversals: - 
+
+1. depth first traversal
+In this traversal, all of the vertices descendants are processed before we move to an adjacent vertex. The pre order of traversal of the tree is depth first traversal. In 
+a similar manner, the depth first traversal of a graph starts by processing the first vertex of a graph. After processing the first vertex, we select any vertex adjacent 
+to the next vertex and process it. As each vertex is processed we select an adjacent vertex until we reach an vertex with no adjacent entries. This is similar to reaching 
+a leaf in a tree, then we back out of the structure, processing adjacent vertices as we go. This logic requires stack or recursion to complete this process.
+
+The order in which adjacent vertices are processed depends on how the graph is physically stored. 
+
+2. Breadth first traversal
+In this traversal, all the adjacent vertices of a vertex are processed before going to the next level. In case of tree, the breadth first traversal starts at level zero 
+and then processes all the vertices in level 1 before going on to process the vertices in level two. The breadth first traversal of the graph follows the same concepts. 
+We begin by picking a starting vertex and after processing it we process all of its adjacent vertices. When all of the adjacent vertices have been processed, we pick the 
+first adjacent vertex and process all of its vertices, then the second adjacent vertex and process all of its vertices and so on. 
+
+//
+Graph
+
+The path matrix or the reachable path matrix 
+
+means a path exists between all the v[i] to v[j] and v[j] to v[i] also. 
+
+Computing Path Matrix from powers of adjacency matrix
+
+Lets us take a graph and compute path matrix for it from its adjacency matrix. 
+
+refer image
+
+Path length denotes number of edges in path. The adjacency matrix is the path matrix of path length 1. Now if we multiply the adjacency matrix with itself then we get 
+path matrix of length two.
+
+In this matrix, the value of AM2 of ij will represent the number of paths of path length 2 from the node v[i] to v[j], for example node A has two path of path length 2 
+to node C. To obtain the path matrix of length 3, we will multiple the path matrix of length 2 with adjacency matrix.
+
+Here AM3 of ij will represent the number of paths of path length 3 from node v[i] to v[j], for example, here node a has four path of path length 3 to node D, and node D
+has no path of path length 3 to node b, Similarly we can find out path matrix of path length 4. Lets us say matrix x where Xn = AM1 + AM2 + AM3 + AM4 + AMn. 
+
+Here X[i][j] has the value of number of paths <= length n. From node v[i] to v[j], here n is the total number of nodes in the graph therefore X4 will be 
+From the definition of path matrix, p[i][j] = 1 if there is a path from v[i] to v[j] and this path can have length n or less than m. This graph is strongly connected since 
+all the entries are 1. 
+
+Therefore, Qk[i][j] = length of shortest path from vi to vj using nodes v1,v2,v3.....vk  
+                      infinity if there is no path from vi to vj using nodes v1,v2,...vk
+
+Q0[i][j] = length of shortest path from vi to vj
+Q1[i][j] = length of shortest path from vi to vj using v1
+Q2[i][j] = length of shortest path from vi to vj using v1,v2
+Q3[i][j] = length of shortest path from vi to vj using v1,v2,v3
+
+therefore, we can apply the formula for compution of Qk[i][j] = minimum(Qk-1[i][j],Qk-1[i][k]+Qk-1[k][j]);
+
+i stands for infinity 
+
+Height of Matrix
+
+W =     A   B   C   D
+    A   0   2   0   9
+    B   3   0   4   7
+    C   0   6   0   2
+    D   14  0   4   0
+
+Q0 =     A   B   C   D
+     A   i   2   i   9
+     B   3   i   4   7
+     C   i   6   i   2
+     D   14  i   4   i
+
+Q1 =     A   B   C   D
+     A   i   2   i   9
+     B   3   5   4   7
+     C   i   6   i   2
+     D   14  16  4   23
+
+Q2 =     A   B   C   D
+     A   5   2   6   9
+     B   3   5   4   7
+     C   9   6   10  2
+     D   14  16  4   23
+
+Q3 =     A   B   C   D
+     A   5   2   6   8
+     B   3   5   4   7
+     C   9   6   10  2
+     D   13  10  4   6
+
+Q3 =     A   B   C   D
+     A   5   2   6   8
+     B   3   5   4   6
+     C   9   6   6   2
+     D   13  10  4   6
